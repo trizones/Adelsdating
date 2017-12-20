@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
 @Styles.Render("~/Content/css")
-@if (Request.IsAuthenticated && ViewData.ContainsKey("FullName"))
+@if (Request.IsAuthenticated && ViewData.ContainsKey("nickName"))
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {

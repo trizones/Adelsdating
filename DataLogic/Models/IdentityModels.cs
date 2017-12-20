@@ -20,6 +20,7 @@ namespace Web.Models
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+           
             return userIdentity;
         }
 
@@ -44,6 +45,7 @@ namespace Web.Models
     {
         public DbSet<Interests> Interests { get; set; }
         public DbSet<Posts> Posts { get; set; }
+
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

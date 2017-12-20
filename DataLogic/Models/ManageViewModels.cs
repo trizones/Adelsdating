@@ -9,8 +9,6 @@ namespace Web.Models
     {
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
-        public string PhoneNumber { get; set; }
-        public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
     }
 
@@ -56,6 +54,15 @@ namespace Web.Models
         [Display(Name = "Confirm new password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class ChangeNicknameModel
+    {
+
+        [Required]
+        [Display(Name = "New Nickname")]
+        public string NewNickname { get; set; }
+
     }
 
 

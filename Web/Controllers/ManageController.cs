@@ -66,9 +66,7 @@ namespace Web.Controllers
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
+                HasPassword = HasPassword(),      
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
@@ -219,7 +217,38 @@ namespace Web.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        //
+        // GET: /Manage/ChangeNickname
+        public ActionResult ChangeNickname()
+        {
+            return View();
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<ActionResult> SetNickname(ChangeNicknameModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var user = UserManager.FindById(User.Identity.GetUserId());
+
+                        user.Nickname = model.NewNickname;
+                        IdentityResult result = await UserManager.UpdateAsync(user);
+                }
+
+                return RedirectToAction("MyPage", "User");
+            }
+            catch
+            {
+
+                return RedirectToAction("ChangeNickname", new { Message = "Du måste skriva in något." });
+            }
+            
+        }
+
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 

@@ -10,8 +10,8 @@ namespace Web.Controllers
     public class BaseController : Controller
     {
         public class ApplicationBaseController : Controller
-        {   
-            //Hämta namnet från inloggad användare
+        {
+            //Hämta olika properties från inloggad användare
             protected override void OnActionExecuted(ActionExecutedContext filterContext)
             {
                 if (User != null)
@@ -22,16 +22,18 @@ namespace Web.Controllers
                     if (!string.IsNullOrEmpty(username))
                     {
                         var user = context.Users.SingleOrDefault(u => u.UserName == username);
-                        string fullName = string.Concat(new string[] { user.Firstname, " ", user.Lastname });
-                        ViewData.Add("FullName", fullName);
+                        string nickName = user.Nickname;
+                        ViewData.Add("nickName", nickName);
+                 
+                        string firstName = user.Firstname;
+                        ViewData.Add("firstName", firstName);
+
+                        string lastName = user.Firstname;
+                        ViewData.Add("lastName", lastName);
                     }
                 }
                 base.OnActionExecuted(filterContext);
             }
-
-
-            public ApplicationBaseController()
-            { }
         }
     }
 }
