@@ -1,18 +1,14 @@
 ﻿using AdelsDating.Framework.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+using Web.Models;
 
 namespace AdelsDating.Models
 {
     public class Posts : IEntity
     {
         public string Id { get; set; }
-        
-        public string Content { get; set; } 
+        public string Message { get; set; } 
+        public ApplicationUser FromUser { get; set; }
+        public ApplicationUser ToUser { get; set; }
 
     }
-
 }
