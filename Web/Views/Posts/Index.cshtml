@@ -1,7 +1,8 @@
-﻿@model IEnumerable<AdelsDating.Models.Posts>
+﻿@using Web.Models
+@model Web.Controllers.PostsController
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Poster";
 }
 
 <h2>Index</h2>
@@ -12,10 +13,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.From)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Content)
+            @Html.DisplayNameFor(model => model.Message)
         </th>
         <th></th>
     </tr>
@@ -23,10 +24,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.DisplayFor(modelItem => item.FromUser)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Content)
+            @Html.DisplayFor(modelItem => item.Message)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

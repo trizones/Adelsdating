@@ -7,8 +7,8 @@ namespace AdelsDating.Models
     {
         public string Id { get; set; }
         public string Message { get; set; } 
-        public ApplicationUser FromUser { get; set; }
-        public ApplicationUser ToUser { get; set; }
+        public ApplicationUser From { get; set; }
+        public ApplicationUser To { get; set; }
 
     }
 }
