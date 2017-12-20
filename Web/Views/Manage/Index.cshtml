@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Inställningar";
+}
+
+
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Ändra dina personliga inställningar</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Lösenord:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Byt ditt lösenord", "ChangePassword")
+
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+            ]
+        </dd>
+    </dl>
+</div>
