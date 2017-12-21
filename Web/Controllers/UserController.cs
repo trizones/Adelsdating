@@ -15,9 +15,7 @@ namespace Web.Controllers
         // GET: User
         public ActionResult MyPage()
         {
-            var db = new ApplicationDbContext();
-            var users = db.Users.ToList();
-            return View(users);
+            return View();
         }
 
         public ActionResult Search()
