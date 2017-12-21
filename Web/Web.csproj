@@ -253,6 +253,7 @@
     <Content Include="Views\User\MyPage.cshtml" />
     <Content Include="Views\Manage\ChangeNickname.cshtml" />
     <Content Include="Views\User\Search.cshtml" />
+    <Content Include="Views\User\UserPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

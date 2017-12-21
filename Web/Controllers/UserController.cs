@@ -12,10 +12,18 @@ namespace Web.Controllers
     {
         private ApplicationDbContext ApplicationDbContext = new ApplicationDbContext();
 
-        // GET: User
+        // GET: Inlogged Page
         public ActionResult MyPage()
         {
             return View();
+        }
+
+ 
+        public ActionResult UserPage(string nickname)
+        {
+            var user = ApplicationDbContext.Users.Where(x => x.Nickname.Equals(nickname));
+            
+            return View(user);
         }
 
         public ActionResult Search()
@@ -28,6 +36,7 @@ namespace Web.Controllers
         {
             //Hämtar alla användare som matchar parametern
             var allUsers = ApplicationDbContext.Users.Where(x => x.Nickname.Contains(search) || search == null).ToList();
+            
             return View(allUsers);
         }
 
