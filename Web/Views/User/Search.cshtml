@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Web.Models.ApplicationUser>
+    <br /> <br />
+<table class=" table table-striped">
+    <thead>
+        <tr>
+            <td>Nickname</td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="3" style="color:red">
+                    Inga användare hittades.
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(@item.Nickname, "MyPage", "User")</td>
+                </tr>
+            }
+        }
+        
+    </tbody>
+</table>

@@ -24,6 +24,7 @@
 body {
 }
 
+
 .UserInformation {
     display: inline-block;
 }
@@ -40,6 +41,7 @@ body {
     margin-top: 12px;
     border-radius: 10px;
     text-size-adjust: auto;
+  
 }
 
 img.avatarsHomePage {
@@ -104,13 +106,16 @@ input.searchfield {
     border-radius: 10px;
     text-size-adjust: auto;
     width: 260px;
-    box-sizing: border-box;
     border: 1px solid #ccc;
     font-size: 14px;
     background-image: url("https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png");
     background-repeat: no-repeat;
     background-size: 10%;
     padding: 4px 4px 4px 25px;
+}
+
+input.searchfieldSubmit {
+
 }
 
 

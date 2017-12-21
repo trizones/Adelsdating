@@ -31,6 +31,7 @@ namespace Web.Controllers
             return View();
         }
 
+
         //Function for adding the profilepicture to varius places on the website
 
         public FileContentResult ProfilePicture()
