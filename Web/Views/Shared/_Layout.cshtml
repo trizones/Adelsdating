@@ -21,16 +21,18 @@
                 <div class="top-left">
                     @Html.ActionLink("Hem", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 
-
-                    @using (Html.BeginForm("Search", "User"))
-                    {
-                        <div>
-                            <!-- Gör sökning till användare -->
-                            <input class="searchfield" name="search" type="text" placeholder="Sök efter användare.." />
-                            <input class="searchfieldSubmit" type="submit" value="Submit" />
-                        </div>
-                    }
                 </div>
+            </div>
+
+            <div style="float:left;">
+                @using (Html.BeginForm("Search", "User"))
+    {
+            <!-- Gör sökning till användare -->
+            <input class="searchfield" name="search" type="text" placeholder="Sök efter användare.." />
+            <input class="btn-success" type="submit" value="Submit" />
+
+}
+
             </div>
 
             <div class="navbar-collapse collapse">

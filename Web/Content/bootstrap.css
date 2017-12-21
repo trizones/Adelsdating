@@ -24,7 +24,11 @@
 body {
 }
 
-
+.searchDiv 
+{
+    float:left;
+    display: inline-block;
+}
 .UserInformation {
     display: inline-block;
 }
