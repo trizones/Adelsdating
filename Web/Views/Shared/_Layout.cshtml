@@ -21,10 +21,15 @@
                 <div class="top-left">
                     @Html.ActionLink("Hem", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 
-                    <!-- Gör sökning till användare -->
-                    <input class="searchfield" id="searchField" type="text" placeholder="Sök efter användare.." />
 
-
+                    @using (Html.BeginForm("Search", "User"))
+                    {
+                        <div>
+                            <!-- Gör sökning till användare -->
+                            <input class="searchfield" name="search" type="text" placeholder="Sök efter användare.." />
+                            <input class="searchfieldSubmit" type="submit" value="Submit" />
+                        </div>
+                    }
                 </div>
             </div>
 

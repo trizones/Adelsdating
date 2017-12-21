@@ -120,7 +120,7 @@
     <Compile Include="Models\Interests.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Posts.cs" />
-    <Compile Include="Models\SearchResultModel.cs" />
+    <Compile Include="Models\SearchResultUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

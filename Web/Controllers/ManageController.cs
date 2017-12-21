@@ -231,9 +231,10 @@ namespace Web.Controllers
             try
             {
                 if (ModelState.IsValid)
-                {
+                {   //Spara inloggand användare
                     var user = UserManager.FindById(User.Identity.GetUserId());
-
+                        
+                        //Ändra användarens nickname & spara ändringen i databasen
                         user.Nickname = model.NewNickname;
                         IdentityResult result = await UserManager.UpdateAsync(user);
                 }
