@@ -24,12 +24,17 @@ namespace Web.Controllers
                         var user = context.Users.SingleOrDefault(u => u.UserName == username);
                         string nickName = user.Nickname;
                         ViewData.Add("nickName", nickName);
-                 
+
                         string firstName = user.Firstname;
                         ViewData.Add("firstName", firstName);
 
-                        string lastName = user.Firstname;
+                        string lastName = user.Lastname;
                         ViewData.Add("lastName", lastName);
+
+                        string fullName = string.Concat(firstName, lastName);
+                        ViewData.Add("fullName", fullName);
+
+                        
                     }
                 }
                 base.OnActionExecuted(filterContext);

@@ -24,6 +24,18 @@
 body {
 }
 
+.UserInformation {
+    display: inline-block;
+}
+
+.MyPage {
+    display: inline-block;
+}
+
+.UserNamePic {
+    display: inline-block;
+}
+
 .searchfield {
     margin-top: 12px;
     border-radius: 10px;
