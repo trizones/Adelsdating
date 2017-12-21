@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Web.Models;
 
 namespace Web.Controllers
 {
@@ -11,7 +12,9 @@ namespace Web.Controllers
         // GET: User
         public ActionResult MyPage()
         {
-            return View();
+            var db = new ApplicationDbContext();
+            var users = db.Users.ToList();
+            return View(users);
         }
 
 

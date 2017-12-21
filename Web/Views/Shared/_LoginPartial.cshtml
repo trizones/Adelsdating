@@ -8,6 +8,9 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li>
+                @Html.ActionLink("Friends", "Index", "PostsUser")
+            </li>
+            <li>
                 @Html.ActionLink("Min Sida", "MyPage", "User", routeValues: null, htmlAttributes: new { id = "myPage" })
             </li>
             <li id="cogwheel">

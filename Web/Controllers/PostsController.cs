@@ -5,48 +5,56 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Web.Models;
+using System.Data.Entity;
 
 namespace Web.Controllers
 {
     public class PostsController : BaseController.ApplicationBaseController
     {
-        ApplicationDbContext db = new ApplicationDbContext();
-        // GET: Inlägg
-        public ActionResult Index()
-        {
-            return View(db.Posts.ToList());
+        private ApplicationDbContext db = new ApplicationDbContext();
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing) db.Dispose();
+
+            base.Dispose(disposing);
+        }
+
+        // GET: Inlägg
+        public ActionResult Index(string id)
+        {
+            var posts = db.Posts.Where(x => x.To.Id == id).ToList();
+            return View(new PostIndexViewModel {  Id = id, Posts = posts});
         }
 
         public ActionResult Create(string id)
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult Create(Posts post, string id)
         {
+            
+                var userName = User.Identity.Name;
 
-            var userName = User.Identity.Name;
+                var user = db.Users.Single(x => x.UserName == userName);
 
-            var user = db.Users.Single(x => x.UserName == userName);
+                post.From = user;
 
-            post.From = user;
+                var toUser = db.Users.Single(x => x.Id == id);
+                post.To = toUser;
 
-            var toUser = db.Users.Single(x => x.Id == id);
-            post.To = toUser;
+                db.Posts.Add(post);
 
-            db.Posts.Add(post);
+                db.SaveChanges();
 
-            db.SaveChanges();
-
-            return RedirectToAction("Index", new { id = id });
+                return RedirectToAction("Index", new { id = id });
         }
+    }
 
-        public class PostIndexViewModel
-        {
-            public string Id { get; set; }
-            public ICollection<Posts> Posts { get; set; }
-        }
+    public class PostIndexViewModel
+    {
+        public string Id { get; set; }
+        public ICollection<Posts> Posts { get; set; }
     }
 }

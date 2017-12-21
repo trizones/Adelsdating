@@ -1,33 +1,26 @@
-﻿@using Web.Models
-@model Web.Controllers.PostsController
+﻿@model Web.Controllers.PostIndexViewModel
 
 @{
-    ViewBag.Title = "Poster";
+    ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Poster</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new { id = Model.Id})
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.From)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Message)
+            @*@Html.DisplayNameFor(model => model.Message)*@
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Posts) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FromUser)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Message)
+            @Html.DisplayFor(modelItem => item.From.UserName): @Html.DisplayFor(modelItem => item.Message)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
