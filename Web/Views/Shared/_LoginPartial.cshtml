@@ -8,7 +8,7 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.ActionLink("Friends", "Index", "PostsUser")
+                @Html.ActionLink("Friends", "Index", "UserPosts", routeValues: null, htmlAttributes: new { id = "index"})
             </li>
             <li>
                 @Html.ActionLink("Min Sida", "MyPage", "User", routeValues: null, htmlAttributes: new { id = "myPage" })
