@@ -8,6 +8,7 @@ using AdelsDating.Framework.Repositories;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using DataLogic.Models;
 
 namespace Web.Models
 {
@@ -37,13 +38,17 @@ namespace Web.Models
         public virtual List<Interests> Interests { get; set; }
 
         public virtual List<Posts> Posts { get; set; }
+
+        public virtual List<Friends> Friends { get; set; }
+
+        public virtual List<FriendRequests> FriendRequests { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Interests> Interests { get; set; }
         public DbSet<Posts> Posts { get; set; }
-
+        public DbSet<Friends> Friends { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
