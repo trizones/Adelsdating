@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 namespace DataLogic.Models
 {
     public class Friends : IEntity
-    {
-        
+    {  
         public string Id { get; set; }
     }
 }
