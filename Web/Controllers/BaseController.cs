@@ -22,7 +22,7 @@ namespace Web.Controllers
                     if (!string.IsNullOrEmpty(username))
                     {
                         var user = context.Users.SingleOrDefault(u => u.UserName == username);
-
+                        
                         string userName = user.UserName;
                         ViewData.Add("userName", userName);
 
