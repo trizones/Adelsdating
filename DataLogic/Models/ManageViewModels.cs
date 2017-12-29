@@ -58,12 +58,16 @@ namespace Web.Models
 
     public class ChangeNicknameModel
     {
-
         [Required]
         [Display(Name = "New Nickname")]
         public string NewNickname { get; set; }
 
     }
 
+    public class ChangeProfilePictureModel
+    {
+        [Display(Name = "New Profilepicture")]
+        public byte[] NewProfilePicture { get; set; }
+    }
 
 }

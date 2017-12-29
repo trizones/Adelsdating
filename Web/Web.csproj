@@ -255,6 +255,7 @@
     <Content Include="Views\Manage\ChangeNickname.cshtml" />
     <Content Include="Views\User\Search.cshtml" />
     <Content Include="Views\User\UserPage.cshtml" />
+    <Content Include="Views\Manage\ChangeProfilePicture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
