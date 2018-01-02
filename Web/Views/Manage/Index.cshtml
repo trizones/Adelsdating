@@ -14,21 +14,37 @@
         <dd>
             [
             @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Byt ditt lösenord", "ChangePassword")
+        {
+            @Html.ActionLink("Byt ditt lösenord", "ChangePassword")
 
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
+    }
+    else
+    {
+        @Html.ActionLink("Create", "SetPassword")
+}
             ]
         </dd>
 
         <dt>Nickname:</dt>
         <dd>
             [
-              @Html.ActionLink("Byt ditt nickname", "ChangeNickname")
+            @Html.ActionLink("Byt ditt nickname", "ChangeNickname")
+            ]
+        </dd>
+
+        <dt>Ny profilbild:</dt>
+        <dd>
+            [
+            @Html.ActionLink("Ny profilbild", "ChangeProfilePicture")
+            ]
+        </dd>
+
+        <dt>Vill du synas i sökningar?</dt>
+        <dd>
+            [
+            @Html.ActionLink("Ja", "ChangeSearchableToTrue", "Manage")
+            /
+            @Html.ActionLink("Nej", "ChangeSearchableToFalse", "Manage")
             ]
         </dd>
     </dl>

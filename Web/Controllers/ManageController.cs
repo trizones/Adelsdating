@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -248,6 +249,100 @@ namespace Web.Controllers
             }
             
         }
+
+        //
+        // GET: /Manage/ChangeNickname
+        public ActionResult ChangeProfilePicture()
+        {
+            return View();
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<ActionResult> SetProfilePicture([Bind(Exclude = "NewProfilepicture")]ChangeProfilePictureModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    byte[] imageData = null;
+                    if (Request.Files.Count > 0)
+                    {   //TODO: Bilden kommer inte fram. Den blir null
+                        HttpPostedFileBase poImgFile = Request.Files["NewProfilepicture"];
+
+                        using (var binary = new BinaryReader(poImgFile.InputStream))
+                        {
+                            imageData = binary.ReadBytes(poImgFile.ContentLength);
+                        }
+                    }
+                    //Spara inloggand användare
+                    var user = UserManager.FindById(User.Identity.GetUserId());
+
+                    //Ändra användarens nickname & spara ändringen i databasen
+                    user.ProfilePicture = imageData;
+                    IdentityResult result = await UserManager.UpdateAsync(user);
+                }
+
+                return RedirectToAction("MyPage", "User");
+            }
+            catch
+            {
+
+                return RedirectToAction("ChangeNickname", new { Message = "Du måste skriva in något." });
+            }
+
+        }
+
+        public async Task<ActionResult> ChangeSearchableToFalse()
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {   //Spara inloggand användare
+                    var user = UserManager.FindById(User.Identity.GetUserId());
+
+                        //Ändra sökbarheten till true & spara ändringen i databasen
+                        user.Searchable = false;
+                        IdentityResult result = await UserManager.UpdateAsync(user);
+
+                }
+
+                return RedirectToAction("MyPage", "User");
+            }
+            catch
+            {
+
+                return RedirectToAction("Index", "Manage", new { Message = "Pröva igen." });
+            }
+
+        }
+
+
+        public async Task<ActionResult> ChangeSearchableToTrue()
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {   //Spara inloggand användare
+                    var user = UserManager.FindById(User.Identity.GetUserId());
+
+                        //Ändra sökbarheten till true & spara ändringen i databasen
+                        user.Searchable = true;
+                        IdentityResult result = await UserManager.UpdateAsync(user);
+                    
+                }
+
+                return RedirectToAction("MyPage", "User");
+            }
+            catch
+            {
+
+                return RedirectToAction("Index", "Manage", new { Message = "Pröva igen." });
+            }
+
+        }
+
+
 
         #region Helpers
         // Used for XSRF protection when adding external logins

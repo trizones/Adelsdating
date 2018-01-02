@@ -34,6 +34,47 @@ namespace Web.Controllers
 
         //Function for adding the profilepicture to varius places on the website
 
+        public FileContentResult UserPicture(String nickname)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                String userId = User.Identity.GetUserId(); //Get the inlogged user ID, to tie the correct profilepicture
+
+                if (userId == null) //If no userID is found
+                {
+                    string fileName = HttpContext.Server.MapPath(@"~/Images/noImg.png"); //Fetch an empty examplepicture
+
+                    byte[] imageData = null;
+                    FileInfo fileInfo = new FileInfo(fileName);
+                    long imageFileLength = fileInfo.Length;
+                    FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                    BinaryReader br = new BinaryReader(fs);
+                    imageData = br.ReadBytes((int)imageFileLength);
+
+                    return File(imageData, "image/png");
+
+                }
+                // to get the user details to load user Image
+                var bdUsers = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+                var userImage = bdUsers.Users.Where(x => x.Nickname == nickname).FirstOrDefault();
+
+                return new FileContentResult(userImage.ProfilePicture, "image/jpeg");
+            }
+            else
+            {
+                string fileName = HttpContext.Server.MapPath(@"~/Images/noImg.png");
+
+                byte[] imageData = null;
+                FileInfo fileInfo = new FileInfo(fileName);
+                long imageFileLength = fileInfo.Length;
+                FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fs);
+                imageData = br.ReadBytes((int)imageFileLength);
+                return File(imageData, "image/png");
+
+            }
+        }
+
         public FileContentResult ProfilePicture()
         {
             if (User.Identity.IsAuthenticated)

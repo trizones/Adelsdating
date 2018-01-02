@@ -258,10 +258,12 @@
     <Content Include="Views\FriendRequest\SendRequestMessage.cshtml" />
     <Content Include="Views\FriendRequest\SendRequest.cshtml" />
     <Content Include="Views\FriendRequest\Index.cshtml" />
+    <Content Include="Views\Manage\ChangeProfilePicture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\FriendRequest\" />
     <Folder Include="Views\PostsUser\" />
   </ItemGroup>
   <ItemGroup>
