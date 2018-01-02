@@ -1,10 +1,10 @@
 ﻿@model Web.Controllers.PostIndexViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Vänner";
 }
-
-<h2>Poster</h2>
+@*Index för poster för vänner*@
+<h2>Vänner</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create", new { id = Model.Id})
@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @*@Html.DisplayNameFor(model => model.Message)*@
+            @*Html.DisplayNameFor(model => model.Posts.)*@
         </th>
         <th></th>
     </tr>
@@ -20,7 +20,7 @@
 @foreach (var item in Model.Posts) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.From.UserName): @Html.DisplayFor(modelItem => item.Message)
+            @Html.DisplayFor(modelItem => item.From.Nickname): @Html.DisplayFor(modelItem => item.Message)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

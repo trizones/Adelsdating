@@ -49,6 +49,7 @@ namespace Web.Models
         public DbSet<Interests> Interests { get; set; }
         public DbSet<Posts> Posts { get; set; }
         public DbSet<Friends> Friends { get; set; }
+        public DbSet<FriendRequests> Requests { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

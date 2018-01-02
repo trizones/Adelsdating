@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AdelsDating.Framework.Repositories;
 
 namespace DataLogic.Models
 {
-    public class Friends
+    public class Friends : IEntity
     {
+        public string Id { get; set; }
         public int FriendId { get; set; }
     }
 }

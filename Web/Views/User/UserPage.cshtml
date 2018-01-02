@@ -19,6 +19,9 @@
     <div class="UserInformation">
         <ol>
             <li>Namn: @String.Concat(user.Firstname," ",user.Lastname) </li>
+            <li>
+                @Html.ActionLink("Send Friendrequest", "SendRequest", "FriendRequest", new { id = user.Id}, null)
+            </li>
         </ol>
     </div>
 

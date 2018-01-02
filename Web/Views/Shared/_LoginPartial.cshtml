@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
 @Styles.Render("~/Content/css")
+
 @if (Request.IsAuthenticated && ViewData.ContainsKey("nickName"))
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -9,6 +10,9 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 @Html.ActionLink("Friends", "Index", "UserPosts", routeValues: null, htmlAttributes: new { id = "index"})
+            </li>
+            <li>
+                @Html.ActionLink("Vänförfrågningar", "Index", "FriendRequest", routeValues: new { User.Identity.Name}, htmlAttributes: null)
             </li>
             <li>
                 @Html.ActionLink("Min Sida", "MyPage", "User", routeValues: null, htmlAttributes: new { id = "myPage" })

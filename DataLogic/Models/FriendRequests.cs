@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AdelsDating.Framework.Repositories;
+using Web.Models;
 
-namespace DataLogic.Models
+namespace AdelsDating.Models
 {
-    public class FriendRequests
+    public class FriendRequests : IEntity
     {
-        public int FromUser { get; set; }
+        public string Id { get; set; }
         public bool Accepted { get; set; }
+        public virtual ApplicationUser FromUser { get; set; }
+        public virtual ApplicationUser ToUser { get; set; }
     }
 }
