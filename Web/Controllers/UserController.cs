@@ -13,9 +13,9 @@ namespace Web.Controllers
         private ApplicationDbContext ApplicationDbContext = new ApplicationDbContext();
 
         // GET: Inlogged Page
-        public ActionResult MyPage()
+        public ActionResult MyPage(ApplicationUser model)
         {
-            return View();
+            return View(model);
         }
 
  
@@ -35,7 +35,7 @@ namespace Web.Controllers
         public ActionResult Search(string search)
         {
             //Hämtar alla användare som matchar parametern
-            var allUsers = ApplicationDbContext.Users.Where(x => x.Nickname.Contains(search) || search == null).ToList();
+            var allUsers = ApplicationDbContext.Users.Where(x => x.Nickname.Contains(search) && x.Searchable == true || search == null).ToList();
             
             return View(allUsers);
         }

@@ -13,9 +13,23 @@
     box-shadow: 0px 0px 20px #888;" />
     </div>
     <div class="UserInformation">
-        <ol>
-            <li>Namn: @Html.Raw((ViewData["fullName"])) </li>
-        </ol>
+        <ol class="MyPageList">
+            <li class="MyPageList">Namn: @Html.Raw((ViewData["fullName"])) </li>
+        <li class="MyPageList">
+        @if(Model.Interests == null)
+        {
+            <p>@Model.Nickname har inte några intressen :(</p>
+        }
+        else
+        {
+            <p>Intressen: @foreach (var item in Model.Interests)
+            {
+                @Html.Raw(item);
+            }
+            </p>
+        }
+            </li>
+            </ol>
     </div>
    
 

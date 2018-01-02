@@ -66,8 +66,14 @@ namespace Web.Models
 
     public class ChangeProfilePictureModel
     {
-        [Display(Name = "New Profilepicture")]
+        [Display(Name = "NewProfilepicture")]
         public byte[] NewProfilePicture { get; set; }
+    }
+
+    public class ChangeSearchable
+    {
+        [Display(Name = "Searchable")]
+        public bool Searchable { get; set; }
     }
 
 }

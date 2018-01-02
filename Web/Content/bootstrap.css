@@ -25,6 +25,10 @@ body {
   
 }
 
+.MyPage {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .searchDiv 
 {
     float:left;

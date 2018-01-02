@@ -259,7 +259,7 @@ namespace Web.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public async Task<ActionResult> SetProfilePicture(ChangeProfilePictureModel model)
+        public async Task<ActionResult> SetProfilePicture([Bind(Exclude = "NewProfilepicture")]ChangeProfilePictureModel model)
         {
             try
             {
@@ -268,7 +268,7 @@ namespace Web.Controllers
                     byte[] imageData = null;
                     if (Request.Files.Count > 0)
                     {   //TODO: Bilden kommer inte fram. Den blir null
-                        HttpPostedFileBase poImgFile = Request.Files["New Profilepicture"];
+                        HttpPostedFileBase poImgFile = Request.Files["NewProfilepicture"];
 
                         using (var binary = new BinaryReader(poImgFile.InputStream))
                         {
@@ -289,6 +289,55 @@ namespace Web.Controllers
             {
 
                 return RedirectToAction("ChangeNickname", new { Message = "Du måste skriva in något." });
+            }
+
+        }
+
+        public async Task<ActionResult> ChangeSearchableToFalse()
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {   //Spara inloggand användare
+                    var user = UserManager.FindById(User.Identity.GetUserId());
+
+                        //Ändra sökbarheten till true & spara ändringen i databasen
+                        user.Searchable = false;
+                        IdentityResult result = await UserManager.UpdateAsync(user);
+
+                }
+
+                return RedirectToAction("MyPage", "User");
+            }
+            catch
+            {
+
+                return RedirectToAction("Index", "Manage", new { Message = "Pröva igen." });
+            }
+
+        }
+
+
+        public async Task<ActionResult> ChangeSearchableToTrue()
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {   //Spara inloggand användare
+                    var user = UserManager.FindById(User.Identity.GetUserId());
+
+                        //Ändra sökbarheten till true & spara ändringen i databasen
+                        user.Searchable = true;
+                        IdentityResult result = await UserManager.UpdateAsync(user);
+                    
+                }
+
+                return RedirectToAction("MyPage", "User");
+            }
+            catch
+            {
+
+                return RedirectToAction("Index", "Manage", new { Message = "Pröva igen." });
             }
 
         }

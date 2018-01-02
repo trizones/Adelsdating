@@ -38,5 +38,14 @@
             @Html.ActionLink("Ny profilbild", "ChangeProfilePicture")
             ]
         </dd>
+
+        <dt>Vill du synas i sökningar?</dt>
+        <dd>
+            [
+            @Html.ActionLink("Ja", "ChangeSearchableToTrue", "Manage")
+            /
+            @Html.ActionLink("Nej", "ChangeSearchableToFalse", "Manage")
+            ]
+        </dd>
     </dl>
 </div>
