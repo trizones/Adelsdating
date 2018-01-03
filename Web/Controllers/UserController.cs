@@ -15,22 +15,25 @@ namespace Web.Controllers
         // GET: Inlogged Page
         public ActionResult MyPage(ApplicationUser model)
         {
+            //Hämtar den inloggade användaren
             return View(model);
         }
 
  
         public ActionResult UserPage(string nickname)
         {
+            //Hämtar användaren som matchar användarnamnet, hämtat från sökfunktionen
             var user = ApplicationDbContext.Users.Where(x => x.Nickname.Equals(nickname));
-            
             return View(user);
         }
 
+        // GET: Search
         public ActionResult Search()
         {
             return View();
         }
 
+        //Postar alla användare som matchar sökparametern
         [HttpPost]
         public ActionResult Search(string search)
         {

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model IEnumerable<Web.Models.ApplicationUser>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -15,24 +16,17 @@
     </div>
     <div class="page-header">
         <ul class="avatarsHomePage">
-            <li class="TextAndImage">
-                <div class="TextAndImage">
-                    <p>Användare</p>
-                    <img class="avatarsHomePage" src="http://www.kungahuset.se/images/18.41402262159445f6179b33/1484743725681/H_M_+Konung+Carl+XVI+Gustaf+(1)+Foto+Peter+Knutson+Kungahuset_se.jpg" />
-                </div>
-            </li>
-            <li class="TextAndImage">
-                <div class="TextAndImage">
-                    <p>Pajas</p>
-                    <img class="avatarsHomePage" src="http://www.kungahuset.se/images/18.41402262159445f6179b33/1484743725681/H_M_+Konung+Carl+XVI+Gustaf+(1)+Foto+Peter+Knutson+Kungahuset_se.jpg" />
-                </div>
-            </li>
-            <li class="TextAndImage">
-                <div class="TextAndImage">
-                    <p>Hej</p>
-                    <img class="avatarsHomePage" src="http://www.kungahuset.se/images/18.41402262159445f6179b33/1484743725681/H_M_+Konung+Carl+XVI+Gustaf+(1)+Foto+Peter+Knutson+Kungahuset_se.jpg" />
-                </div>
-            </li>
+            @for(int i = 0; i < 3; i++)
+            {
+                var user = Model.ElementAt(i);
+                <li class="TextAndImage">
+                    <div class="TextAndImage">
+                        <p>@user.Nickname</p>
+                        <img class="avatarsHomePage" src="@Url.Action("UserPicture", "Home", new { nickname = user.Nickname })"/>
+                    </div>
+                </li>
+
+            }
         </ul>
     </div>
 </body>

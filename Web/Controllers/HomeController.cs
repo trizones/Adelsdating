@@ -12,9 +12,13 @@ namespace Web.Controllers
 {
     public class HomeController : BaseController.ApplicationBaseController
     {
+        private ApplicationDbContext ApplicationDbContext = new ApplicationDbContext();
+
         public ActionResult Index()
         {
-            return View();
+            //Hämtar alla användare i databasen
+            var allUsers = ApplicationDbContext.Users.OrderBy(x => Guid.NewGuid()).Take(3);
+            return View(allUsers);
         }
 
         public ActionResult About()
@@ -31,48 +35,18 @@ namespace Web.Controllers
             return View();
         }
 
-
-        //Function for adding the profilepicture to varius places on the website
+        
+        //Returnerar en profilbild
 
         public FileContentResult UserPicture(String nickname)
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                String userId = User.Identity.GetUserId(); //Get the inlogged user ID, to tie the correct profilepicture
-
-                if (userId == null) //If no userID is found
-                {
-                    string fileName = HttpContext.Server.MapPath(@"~/Images/noImg.png"); //Fetch an empty examplepicture
-
-                    byte[] imageData = null;
-                    FileInfo fileInfo = new FileInfo(fileName);
-                    long imageFileLength = fileInfo.Length;
-                    FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                    BinaryReader br = new BinaryReader(fs);
-                    imageData = br.ReadBytes((int)imageFileLength);
-
-                    return File(imageData, "image/png");
-
-                }
-                // to get the user details to load user Image
+            
+                // Hämtar profilbilden som matchar användarnamnet
                 var bdUsers = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
                 var userImage = bdUsers.Users.Where(x => x.Nickname == nickname).FirstOrDefault();
 
                 return new FileContentResult(userImage.ProfilePicture, "image/jpeg");
-            }
-            else
-            {
-                string fileName = HttpContext.Server.MapPath(@"~/Images/noImg.png");
 
-                byte[] imageData = null;
-                FileInfo fileInfo = new FileInfo(fileName);
-                long imageFileLength = fileInfo.Length;
-                FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                BinaryReader br = new BinaryReader(fs);
-                imageData = br.ReadBytes((int)imageFileLength);
-                return File(imageData, "image/png");
-
-            }
         }
 
         public FileContentResult ProfilePicture()
