@@ -38,12 +38,12 @@ namespace Web.Controllers
         
         //Returnerar en profilbild
 
-        public FileContentResult UserPicture(String nickname)
+        public FileContentResult UserPicture(String id)
         {
             
                 // Hämtar profilbilden som matchar användarnamnet
                 var bdUsers = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
-                var userImage = bdUsers.Users.Where(x => x.Nickname == nickname).FirstOrDefault();
+                var userImage = bdUsers.Users.Where(x => x.Id == id).FirstOrDefault();
 
                 return new FileContentResult(userImage.ProfilePicture, "image/jpeg");
 

@@ -19,12 +19,13 @@ namespace Web.Models
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-           
+
             return userIdentity;
         }
 
 
         public byte[] ProfilePicture { get; set; }
+        [Required]
         public string Nickname { get; set; }
         [Required]
         public string Firstname { get; set; }

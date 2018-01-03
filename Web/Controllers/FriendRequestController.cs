@@ -33,20 +33,29 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult SendRequest(FriendRequests request, string id)
         {
-            var userName = User.Identity.Name;
+            try
+            {
+                var userName = User.Identity.Name;
 
-            var From = db.Users.Single(x => x.UserName == userName);
+                var From = db.Users.Single(x => x.UserName == userName);
 
-            request.FromUser = From;
+                request.FromUser = From;
 
-            var To = db.Users.Single(x => x.Id == id);
-            request.ToUser = To;
+                var To = db.Users.Single(x => x.Id == id);
+                request.ToUser = To;
 
-            db.Requests.Add(request);
+                db.Requests.Add(request);
 
-            db.SaveChanges();
+                db.SaveChanges();
 
-            return RedirectToAction("UserPage", "User", routeValues: new { nickname = To.Nickname });
+                return RedirectToAction("UserPage", "User", routeValues: new { nickname = To.Nickname });
+            }
+            catch
+            {
+
+                return RedirectToAction("UserPage", "User", new { Message = "Du måste skriva in något." });
+            }
+            
         }
 
         public ActionResult AcceptRequest(string requestId)
