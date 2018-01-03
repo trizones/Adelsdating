@@ -16,8 +16,8 @@ namespace Web.Controllers
 
         public ActionResult Index()
         {
-            //Hämtar alla användare i databasen
-            var allUsers = ApplicationDbContext.Users.OrderBy(x => Guid.NewGuid()).Take(3);
+            //Hämtar tre slumpmässiga användare och skickar in dom index-viewn
+            var allUsers = ApplicationDbContext.Users.Where(c => c.Searchable == true).OrderBy(x => Guid.NewGuid()).Take(3).Distinct();
             return View(allUsers);
         }
 

@@ -252,14 +252,14 @@ namespace Web.Controllers
 
         //
         // GET: /Manage/ChangeNickname
-        public ActionResult ChangeProfilePicture()
+        public ActionResult ChangeProfilePicture(ChangeProfilePictureModel model)
         {
-            return View();
+            return View(model);
         }
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public async Task<ActionResult> SetProfilePicture([Bind(Exclude = "NewProfilepicture")]ChangeProfilePictureModel model)
+        public async Task<ActionResult> SetProfilePicture([Bind(Exclude = "ProfilePicture")]ChangeProfilePictureModel model)
         {
             try
             {
@@ -268,7 +268,7 @@ namespace Web.Controllers
                     byte[] imageData = null;
                     if (Request.Files.Count > 0)
                     {   //TODO: Bilden kommer inte fram. Den blir null
-                        HttpPostedFileBase poImgFile = Request.Files["NewProfilepicture"];
+                        HttpPostedFileBase poImgFile = Request.Files["ProfilePicture"];
 
                         using (var binary = new BinaryReader(poImgFile.InputStream))
                         {
@@ -288,7 +288,7 @@ namespace Web.Controllers
             catch
             {
 
-                return RedirectToAction("ChangeNickname", new { Message = "Du måste skriva in något." });
+                return RedirectToAction("ChangeProfilePicture", new { Message = "Du måste välja en bild." });
             }
 
         }

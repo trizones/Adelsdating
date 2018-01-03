@@ -16,9 +16,8 @@
     </div>
     <div class="page-header">
         <ul class="avatarsHomePage">
-            @for(int i = 0; i < 3; i++)
+            @foreach (var user in Model)
             {
-                var user = Model.ElementAt(i);
                 <li class="TextAndImage">
                     <div class="TextAndImage">
                         <p>@user.Nickname</p>

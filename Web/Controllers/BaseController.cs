@@ -35,7 +35,7 @@ namespace Web.Controllers
                         string lastName = user.Lastname;
                         ViewData.Add("lastName", lastName);
 
-                        string fullName = string.Concat(firstName, lastName);
+                        string fullName = string.Concat(firstName," ",lastName);
                         ViewData.Add("fullName", fullName);
 
                         
