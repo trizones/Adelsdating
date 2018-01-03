@@ -22,10 +22,10 @@ namespace Web.Controllers
         }
 
  
-        public ActionResult UserPage(string id)
+        public ActionResult UserPage(string nickname)
         {
             //Hämtar användaren som matchar användarnamnet, hämtat från sökfunktionen
-            var user = db.Users.Where(x => x.Id.Equals(id)).Single();
+            var user = db.Users.Where(x => x.Nickname.Equals(nickname)).Single();
             return View(user);
         }
 

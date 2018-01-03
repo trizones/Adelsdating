@@ -1,7 +1,6 @@
 ﻿using AdelsDating.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Net.Http;
 
 namespace Web.Models
 {

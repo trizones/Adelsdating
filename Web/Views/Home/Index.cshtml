@@ -24,7 +24,7 @@
                         <!-- <a href='@Html.ActionLink(user.Nickname, "UserPage", "User", routeValues: new {nickname = user.Nickname}, htmlAttributes: null)'>
                         
                         </a>-->
-                        <img class="avatarsHomePage" src="@Url.Action("UserPicture", "Home", new { id = user.Id })" />
+                        <img class="avatarsHomePage" src="@Url.Action("UserPicture", "Home", new { nickname = user.Nickname })" />
                     </div>
                 </li>
 
