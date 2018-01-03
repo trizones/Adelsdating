@@ -194,6 +194,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\FriendRequestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InterestsController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsUserController.cs" />
@@ -263,7 +264,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\FriendRequest\" />
+    <Folder Include="Views\Interests\" />
     <Folder Include="Views\PostsUser\" />
   </ItemGroup>
   <ItemGroup>
