@@ -15,8 +15,9 @@
     <div class="UserInformation">
         <ol class="MyPageList">
             <li class="MyPageList">Namn: @Html.Raw((ViewData["fullName"])) </li>
+            <br />
         <li class="MyPageList">
-        @if(Model.Interests == null)
+        @if(Model.Interests.Count == 0)
         {
             <p>@Model.Nickname har inte några intressen :(</p>
         }

@@ -10,20 +10,22 @@ namespace Web.Controllers
 {
     public class UserController : BaseController.ApplicationBaseController
     {
-        private ApplicationDbContext ApplicationDbContext = new ApplicationDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Inlogged Page
-        public ActionResult MyPage(ApplicationUser model)
+        public ActionResult MyPage()
         {
             //Hämtar den inloggade användaren
-            return View(model);
+            var loggedInUser = db.Users.Where(x => x.UserName == User.Identity.Name).Single();
+            
+            return View(loggedInUser);
         }
 
  
         public ActionResult UserPage(string nickname)
         {
             //Hämtar användaren som matchar användarnamnet, hämtat från sökfunktionen
-            var user = ApplicationDbContext.Users.Where(x => x.Nickname.Equals(nickname));
+            var user = db.Users.Where(x => x.Nickname.Equals(nickname)).Single();
             return View(user);
         }
 
@@ -38,7 +40,8 @@ namespace Web.Controllers
         public ActionResult Search(string search)
         {
             //Hämtar alla användare som matchar parametern
-            var allUsers = ApplicationDbContext.Users.Where(x => x.Nickname.Contains(search) && x.Searchable == true || search == null).ToList();
+            var loggedInUser = User.Identity.Name;
+            var allUsers = db.Users.Where(x => x.Nickname.Contains(search) && x.Searchable == true && x.UserName != loggedInUser || search == null).ToList();
             
             return View(allUsers);
         }
