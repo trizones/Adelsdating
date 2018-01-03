@@ -1,8 +1,5 @@
 ﻿using AdelsDating.Framework.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using Web.Models;
 
 namespace AdelsDating.Models
 {
@@ -10,6 +7,6 @@ namespace AdelsDating.Models
     {
         public string Id { get; set; }
         public string Title { get; set; }
-
+        public virtual ApplicationUser User { get; set; }
     }
 }
