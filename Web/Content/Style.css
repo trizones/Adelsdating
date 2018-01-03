@@ -1,6 +1,26 @@
 ﻿body {
 }
-/*
+.MyPage {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.searchDiv {
+    float: left;
+    display: inline-block;
+}
+
+.UserInformation {
+    display: inline-block;
+}
+
+.MyPage {
+    display: inline-block;
+}
+
+.UserNamePic {
+    display: inline-block;
+}
+
 .searchfield {
     margin-top: 12px;
     border-radius: 10px;
@@ -8,8 +28,8 @@
 }
 
 img.avatarsHomePage {
-    max-height: 200px;
-    max-width: 200px;
+    height: 200px;
+    width: 200px;
     margin-top: 5%;
 }
 
@@ -56,7 +76,7 @@ ul.footer-ul {
     color: black;
 }
 
-    ul.footer-ul:link {
+ ul.footer-ul:link {
         list-style: none;
         text-align: center;
         padding: 0;
@@ -69,7 +89,6 @@ input.searchfield {
     border-radius: 10px;
     text-size-adjust: auto;
     width: 260px;
-    box-sizing: border-box;
     border: 1px solid #ccc;
     font-size: 14px;
     background-image: url("https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-128.png");
@@ -78,4 +97,8 @@ input.searchfield {
     padding: 4px 4px 4px 25px;
 }
 
-    */
+input.btn-success {
+    border: 0;
+    border-radius: 10px;
+    margin-left: -15%;
+}
