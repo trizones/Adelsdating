@@ -20,7 +20,7 @@
             foreach (var item in Model)
             {
                 <tr>
-                    <td>@Html.ActionLink(@item.Nickname, "UserPage", "User", routeValues: new {nickname = @item.Nickname}, htmlAttributes: null)</td>
+                    <td>@Html.ActionLink(@item.Nickname, "UserPage", "User", routeValues: new {id = @item.Id}, htmlAttributes: null)</td>
                 </tr>
             }
         }

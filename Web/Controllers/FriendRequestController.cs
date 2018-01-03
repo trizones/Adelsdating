@@ -20,6 +20,7 @@ namespace Web.Controllers
         
         public ActionResult Index(string name)
         {
+
             ApplicationUser aUser = db.Users.Single(x => x.UserName == name);
             List<FriendRequests> requests = db.Requests.Where(x => x.ToUser.Id == aUser.Id && x.Accepted == false).ToList();
             return View(new PostFriendRequestViewModel { Id = aUser.Id, Requests = requests});
@@ -46,11 +47,12 @@ namespace Web.Controllers
 
             db.SaveChanges();
 
-            return RedirectToAction("UserPage", "User", routeValues: new { nickname = To.Nickname });
+            return RedirectToAction("UserPage", "User", routeValues: new { id = To.Id });
         }
 
-        public ActionResult AcceptRequest(string requestId)
+        public ActionResult AcceptRequest(int requestId)
         {
+
             var request = db.Requests.Single(x => x.Id == requestId);
 
             request.Accepted = true;

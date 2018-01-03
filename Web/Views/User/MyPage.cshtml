@@ -25,7 +25,7 @@
         {
             <p>Intressen: @foreach (var item in Model.Interests)
             {
-                @Html.Raw(item);
+                @Html.Raw(item.Title + ", ");
             }
             </p>
         }

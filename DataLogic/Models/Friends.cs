@@ -4,7 +4,7 @@ namespace DataLogic.Models
 {
     public class Friends : IEntity
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public int FriendId { get; set; }
     }
 }

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Web.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+@*Index för Friendsfliken*@
+<h2>Index</h2>
+
+<p>
+    @*Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nickname)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nickname)
+        </td>
+        <td>
+            @Html.ActionLink("Posts", "Index", "Posts", new { id = item.Id}, new { })
+        </td>
+    </tr>
+}
+
+</table>

@@ -5,7 +5,7 @@ namespace AdelsDating.Models
 {
     public class FriendRequests : IEntity
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public bool Accepted { get; set; }
         public virtual ApplicationUser FromUser { get; set; }
         public virtual ApplicationUser ToUser { get; set; }

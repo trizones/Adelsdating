@@ -266,11 +266,11 @@
     <Content Include="Views\FriendRequest\Index.cshtml" />
     <Content Include="Views\Manage\ChangeProfilePicture.cshtml" />
     <Content Include="Views\Interests\Create.cshtml" />
+    <Content Include="Views\PostsUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\PostsUser\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

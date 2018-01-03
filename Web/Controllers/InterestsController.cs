@@ -34,7 +34,7 @@ namespace Web.Controllers
 
             db.SaveChanges();
 
-            return View();
+            return RedirectToAction("MyPage", "User");
         }
 
         public ActionResult Index()
