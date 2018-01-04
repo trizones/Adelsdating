@@ -21,9 +21,6 @@
                 <li class="TextAndImage">
                     <div class="TextAndImage">
                         <p>@user.Nickname</p>
-                        <!-- <a href='@Html.ActionLink(user.Nickname, "UserPage", "User", routeValues: new {id = user.Id}, htmlAttributes: null)'>
-                        
-                        </a>-->
                         <img class="avatarsHomePage" src="@Url.Action("UserPicture", "Home", new { id = user.Id })" />
                     </div>
                 </li>

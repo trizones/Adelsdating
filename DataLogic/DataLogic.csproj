@@ -116,6 +116,7 @@
     <Compile Include="Framework\Repositories\IEntity.cs" />
     <Compile Include="Framework\Repositories\Repository.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ErrorMessageModel.cs" />
     <Compile Include="Models\FriendRequests.cs" />
     <Compile Include="Models\Friends.cs" />
     <Compile Include="Models\IdentityModels.cs" />

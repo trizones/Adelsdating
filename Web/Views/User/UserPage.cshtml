@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Page";
+    
 }
 
 
@@ -27,14 +28,35 @@
                     <p>
                         Intressen: @foreach (var item in Model.Interests)
                         {
-                            @Html.Raw(item);
+                            <ol>
+                                <li>@item.Title</li>
+                            </ol>
                         }
                     </p>
                 }
             </li>
             <br />
             <li>
-                @Html.ActionLink("Send Friendrequest", "SendRequest", "FriendRequest", new { id = Model.Id}, null)
+                @if (Model.Friends.Count != 0)
+                {
+                    foreach (var item in Model.Friends)
+                {
+                    if (item.UserName == User.Identity.Name)
+                    {
+                            <p>Ni är vänner, gå in på vänner för att skriva något.</p>
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Skicka vänförfrågan", "SendRequest", "FriendRequest", new { id = Model.Id }, null)
+                        }
+                    }
+                }
+                else
+                {
+                    @Html.ActionLink("Skicka vänförfrågan", "SendRequest", "FriendRequest", new { id = Model.Id }, null)
+                }
+
+
             </li>
         </ol>
     </div>

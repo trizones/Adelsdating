@@ -47,7 +47,7 @@ namespace Web.Controllers
 
             return RedirectToAction("Index", new { id = id });
         }
-
+    }
 
     public class PostIndexViewModel
     {
