@@ -19,7 +19,9 @@
                 </button>
 
                 <div class="top-left">
-                    @Html.ActionLink("Hem", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink(DataLogic.Resources.Language.Home, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink(DataLogic.Resources.Language.Languages, "Index", "Language", new { area = "" }, new { @class = "navbar-brand" })
+
 
                 </div>
             </div>
