@@ -11,22 +11,16 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    @Html.ActionLink("Friends", "GetFriends", "User", routeValues: null, htmlAttributes: new { id = "index" })
+                    @Html.ActionLink(DataLogic.Resources.Language.GetFriends, "GetFriends", "User", routeValues: null, htmlAttributes: new { id = "index" })
                 </li>
                 <li>
-                    @Html.ActionLink("Vänförfrågningar", "Index", "FriendRequest", routeValues: new { User.Identity.Name }, htmlAttributes: new { id = "FriendRequest" })
+                    @Html.ActionLink(DataLogic.Resources.Language.FriendRequest, "Index", "FriendRequest", routeValues: new { User.Identity.Name }, htmlAttributes: new {id = "FriendRequest"})
                 </li>
                 <li>
-                    @Html.ActionLink("Min Sida", "MyPage", "User", routeValues: null, htmlAttributes: new { id = "myPage" })
+                    @Html.ActionLink(DataLogic.Resources.Language.MyPage, "MyPage", "User", routeValues: null, htmlAttributes: new { id = "myPage" })
                 </li>
                 <li id="cogwheel">
                     @Html.ActionLink("⚙", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", style = "font-size: 200%" })
-                </li>
-                <li>
-                    <img id="hasRequests" src=""/>
-                    <script>
-
-                    </script>
                 </li>
                 <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
             </ul>
@@ -35,7 +29,7 @@
     else
     {
         <ul class="nav navbar-nav navbar-right">
-            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            <li>@Html.ActionLink(DataLogic.Resources.Language.Register, "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink(DataLogic.Resources.Language.Login, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
         </ul>
     }

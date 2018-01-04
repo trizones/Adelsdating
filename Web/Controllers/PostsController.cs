@@ -21,7 +21,7 @@ namespace Web.Controllers
         public ActionResult Index(string id)
         {
             var posts = db.Posts.Where(x => x.To.Id == id).ToList();
-            return View(new PostIndexViewModel {  Id = id, Posts = posts});
+            return View(new PostIndexViewModel { Id = id, Posts = posts });
         }
 
         public ActionResult Create(string id)
@@ -31,21 +31,21 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Create(Posts post, string id)
         {
-            
-                var userName = User.Identity.Name;
 
-                var user = db.Users.Single(x => x.UserName == userName);
+            var userName = User.Identity.Name;
 
-                post.From = user;
+            var user = db.Users.Single(x => x.UserName == userName);
 
-                var toUser = db.Users.Single(x => x.Id == id);
-                post.To = toUser;
+            post.From = user;
 
-                db.Posts.Add(post);
+            var toUser = db.Users.Single(x => x.Id == id);
+            post.To = toUser;
 
-                db.SaveChanges();
+            db.Posts.Add(post);
 
-                return RedirectToAction("Index", new { id = id });
+            db.SaveChanges();
+
+            return RedirectToAction("Index", new { id = id });
         }
     }
 

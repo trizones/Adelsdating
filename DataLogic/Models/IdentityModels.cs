@@ -39,7 +39,7 @@ namespace Web.Models
 
         public virtual List<Posts> Posts { get; set; }
 
-        public virtual List<Friends> Friends { get; set; }
+        public virtual List<ApplicationUser> Friends { get; set; }
 
         public virtual List<FriendRequests> FriendRequests { get; set; }
     }
