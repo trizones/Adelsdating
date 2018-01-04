@@ -1,33 +1,35 @@
 ﻿@using Microsoft.AspNet.Identity
 @Styles.Render("~/Content/css")
+    
 
-@if (Request.IsAuthenticated && ViewData.ContainsKey("nickName"))
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    @if (Request.IsAuthenticated && ViewData.ContainsKey("nickName"))
     {
-        @Html.AntiForgeryToken()
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
+     
 
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    @Html.ActionLink("Friends", "GetFriends", "User", routeValues: null, htmlAttributes: new { id = "index" })
+                </li>
+                <li>
+                    @Html.ActionLink("Vänförfrågningar", "Index", "FriendRequest", routeValues: new { User.Identity.Name }, htmlAttributes: new {id = "FriendRequest"})
+                </li>
+                <li>
+                    @Html.ActionLink("Min Sida", "MyPage", "User", routeValues: null, htmlAttributes: new { id = "myPage" })
+                </li>
+                <li id="cogwheel">
+                    @Html.ActionLink("⚙", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", style = "font-size: 200%" })
+                </li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            </ul>
+        }
+    }
+    else
+    {
         <ul class="nav navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink("Friends", "Index", "UserPosts", routeValues: null, htmlAttributes: new { id = "index"})
-            </li>
-            <li>
-                @Html.ActionLink("Vänförfrågningar", "Index", "FriendRequest", routeValues: new { User.Identity.Name}, htmlAttributes: null)
-            </li>
-            <li>
-                @Html.ActionLink("Min Sida", "MyPage", "User", routeValues: null, htmlAttributes: new { id = "myPage" })
-            </li>
-            <li id="cogwheel">
-                @Html.ActionLink("⚙", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", style = "font-size: 200%" })
-            </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
         </ul>
     }
-}
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
