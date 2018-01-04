@@ -14,13 +14,19 @@
                     @Html.ActionLink("Friends", "GetFriends", "User", routeValues: null, htmlAttributes: new { id = "index" })
                 </li>
                 <li>
-                    @Html.ActionLink("Vänförfrågningar", "Index", "FriendRequest", routeValues: new { User.Identity.Name }, htmlAttributes: new {id = "FriendRequest"})
+                    @Html.ActionLink("Vänförfrågningar", "Index", "FriendRequest", routeValues: new { User.Identity.Name }, htmlAttributes: new { id = "FriendRequest" })
                 </li>
                 <li>
                     @Html.ActionLink("Min Sida", "MyPage", "User", routeValues: null, htmlAttributes: new { id = "myPage" })
                 </li>
                 <li id="cogwheel">
                     @Html.ActionLink("⚙", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", style = "font-size: 200%" })
+                </li>
+                <li>
+                    <img id="hasRequests" src=""/>
+                    <script>
+
+                    </script>
                 </li>
                 <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
             </ul>
