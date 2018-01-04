@@ -26,14 +26,14 @@ namespace Web.Models
     public class SetPasswordViewModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} måste vara åtminstone {2} tecken långt.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Nytt Lösenord")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Verifiera nytt lösenord")]
+        [Compare("NewPassword", ErrorMessage = "De två lösenorden matchar inte med varandra.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -41,25 +41,26 @@ namespace Web.Models
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
+        [Display(Name = "´Nuvarande Lösenord")]
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(32, ErrorMessage = "{0} måste vara åtminstone {2} tecken långt.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Nytt Lösenord")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Verifiera nytt lösenord.")]
+        [Compare("NewPassword", ErrorMessage = "Det två lösenorden matchar inte med varandra.")]
         public string ConfirmPassword { get; set; }
     }
 
     public class ChangeNicknameModel
     {
         [Required]
-        [Display(Name = "New Nickname")]
+        [Display(Name = "Nytt Smeknamn")]
+        [MaxLength(20)]
         public string NewNickname { get; set; }
 
     }

@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Web.Models
 {
-
     public class LoginViewModel
     {
         [Required]
@@ -26,27 +25,29 @@ namespace Web.Models
         [Required]
         [EmailAddress]
         [Display(Name ="Email")]
+        [MaxLength(32)]
         public string Email { get; set; }
 
         [Required]
         [Display(Name = "Nickname")]
+        [MaxLength(20)]
         public string Nickname { get; set; }
 
         [Required]
         [Display(Name = "Firstname")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
         public string Firstname { get; set; }
-
 
         [Required]
         [Display(Name = "Lastname")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
         public string Lastname { get; set; }
-
 
         [Display(Name = "ProfilePicture")]
         public byte[] ProfilePicture { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(32, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -56,5 +57,4 @@ namespace Web.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
-
 }
