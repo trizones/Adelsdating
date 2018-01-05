@@ -44,8 +44,24 @@ namespace Web.Controllers
                 // Hämtar profilbilden som matchar användarnamnet
                 var bdUsers = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
                 var userImage = bdUsers.Users.Where(x => x.Id == id).FirstOrDefault();
-
+                if(userImage.ProfilePicture != null)
+                {
                 return new FileContentResult(userImage.ProfilePicture, "image/jpeg");
+                }
+                
+                else
+                {
+                string fileName = HttpContext.Server.MapPath(@"~/Images/crown.png"); //Fetch an empty examplepicture
+
+                byte[] imageData = null;
+                FileInfo fileInfo = new FileInfo(fileName);
+                long imageFileLength = fileInfo.Length;
+                FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fs);
+                imageData = br.ReadBytes((int)imageFileLength);
+
+                return File(imageData, "image/png");
+                }
 
         }
 
@@ -57,7 +73,7 @@ namespace Web.Controllers
 
                 if (userId == null) //If no userID is found
                 {
-                    string fileName = HttpContext.Server.MapPath(@"~/Images/noImg.png"); //Fetch an empty examplepicture
+                    string fileName = HttpContext.Server.MapPath(@"~/Images/crown.png"); //Fetch an empty examplepicture
 
                     byte[] imageData = null;
                     FileInfo fileInfo = new FileInfo(fileName);
@@ -73,11 +89,25 @@ namespace Web.Controllers
                 var bdUsers = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
                 var userImage = bdUsers.Users.Where(x => x.Id == userId).FirstOrDefault();
 
+                if (userImage.ProfilePicture.Length < 1)
+                {
+                    string fileName = HttpContext.Server.MapPath(@"~/Images/crown.png"); //Fetch an empty examplepicture
+
+                    byte[] imageData = null;
+                    FileInfo fileInfo = new FileInfo(fileName);
+                    long imageFileLength = fileInfo.Length;
+                    FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                    BinaryReader br = new BinaryReader(fs);
+                    imageData = br.ReadBytes((int)imageFileLength);
+
+                    return File(imageData, "image/png");
+                }
+
                 return new FileContentResult(userImage.ProfilePicture, "image/jpeg");
             }
             else
             {
-                string fileName = HttpContext.Server.MapPath(@"~/Images/noImg.png");
+                string fileName = HttpContext.Server.MapPath(@"~/Images/crown.png");
 
                 byte[] imageData = null;
                 FileInfo fileInfo = new FileInfo(fileName);
