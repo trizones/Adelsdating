@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
 @Styles.Render("~/Content/css")
+@Scripts.Render("~/Bundels/bootstrap")
     
 
     @if (Request.IsAuthenticated && ViewData.ContainsKey("nickName"))
@@ -21,6 +22,13 @@
                 </li>
                 <li id="cogwheel">
                     @Html.ActionLink("⚙", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", style = "font-size: 200%" })
+                </li>
+                <li>
+                    <img id= "hasRequests"/>
+                    <script>
+                        alert("Hejsan")
+                        
+                    </script>
                 </li>
                 <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
             </ul>

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Http.Results;
 using System.Web.Mvc;
@@ -21,12 +22,13 @@ namespace Web.Controllers
 
             base.Dispose(disposing);
         }
+
         
         public JsonResult HasRequest()
         {
             var user = db.Users.Single(x => x.UserName == User.Identity.Name);
 
-            bool hasRequest = false;
+            var hasRequest = false;
 
             var Requests = db.Requests.Where(x => x.FromUser == user || x.ToUser == user && x.Accepted == false);
             
@@ -34,8 +36,13 @@ namespace Web.Controllers
             {
                 hasRequest = true;
             }
+            string hej = "";
+            return Json(hasRequest, JsonRequestBehavior.AllowGet);
+        }
 
-            return new JsonResult { Data = hasRequest };
+        private JsonResult Json(bool hasRequest, JsonRequestBehavior allowGet)
+        {
+            throw new NotImplementedException();
         }
     }
 }
