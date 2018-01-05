@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AdelsDating.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,26 +24,25 @@ namespace Web.Controllers
             base.Dispose(disposing);
         }
 
-        
+        //GET: Om det finns en friend request
+        [System.Web.Http.HttpGet]
         public JsonResult HasRequest()
         {
             var user = db.Users.Single(x => x.UserName == User.Identity.Name);
 
-            var hasRequest = false;
+            var amountRequests = db.Requests.Where(x => x.FromUser != user && x.Accepted == false).Count();
 
-            var Requests = db.Requests.Where(x => x.FromUser == user || x.ToUser == user && x.Accepted == false);
-            
-            if(Requests.Count() > 0)
+            var hasRequest = "FALSE";
+
+            if(amountRequests > 0)
             {
-                hasRequest = true;
+                hasRequest = "true";
             }
-            string hej = "";
-            return Json(hasRequest, JsonRequestBehavior.AllowGet);
-        }
 
-        private JsonResult Json(bool hasRequest, JsonRequestBehavior allowGet)
-        {
-            throw new NotImplementedException();
+            var result = new JsonResult();
+            result.Data = new { hasRequest };
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return result;
         }
     }
 }
