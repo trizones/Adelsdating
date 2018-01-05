@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Web.Models;
 using System.Data.Entity;
+using DataLogic.Models;
 
 namespace Web.Controllers
 {
@@ -30,31 +31,38 @@ namespace Web.Controllers
         {
             return View();
         }
-
+        //Parar ihop den som skickat och den som fått requestet
         [HttpPost]
         public ActionResult SendRequest(FriendRequests request, string id)
         {
             try
             {
+                var passViewBag = ""; 
+
                 var userName = User.Identity.Name;
-
                 var From = db.Users.Single(x => x.UserName == userName);
-
                 request.FromUser = From;
-
                 var To = db.Users.Single(x => x.Id == id);
                 request.ToUser = To;
 
-                db.Requests.Add(request);
-
-                db.SaveChanges();
-
-                return RedirectToAction("UserPage", "User", routeValues: new { id = To.Id });
+                //Kollar om dom redan är kompisar
+                if (db.Requests.Count(x => x.FromUser.UserName == From.UserName && x.ToUser.UserName == To.UserName || x.ToUser.UserName
+                 == To.UserName && x.FromUser.UserName == From.UserName) == 0)
+                {
+                    //Är dom inte det, spara requesten
+                    db.Requests.Add(request);             
+                    db.SaveChanges();
+                    passViewBag = "SentRequest"; //Skickar vidare viewbagen till usercontrollern
+                }
+                else
+                {
+                    passViewBag = "AlreadySentRequest"; //Skickar vidare viewbagen till usercontrollern
+                }
+                return RedirectToAction("UserPage", "User", routeValues: new { id = To.Id, passedViewBag = passViewBag });
             }
             catch
             {
-                var message = "Ni är redan vänner";
-                return View("SendRequestMessage", "FriendRequest", message);
+                return View("SendRequestMessage", "FriendRequest");
 
             }
             
@@ -68,8 +76,12 @@ namespace Web.Controllers
             var userSentRequest = request.FromUser;
             var loggedinUser = request.ToUser;
 
-            loggedinUser.Friends.Add(userSentRequest);
-            userSentRequest.Friends.Add(loggedinUser);
+            Friends friendsTable = new Friends();
+
+            friendsTable.Friend1 = (userSentRequest);
+            friendsTable.Friend2 = (loggedinUser);
+
+            db.Friends.Add(friendsTable);
 
             request.Accepted = true;
 

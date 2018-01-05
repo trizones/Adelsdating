@@ -30,11 +30,45 @@ namespace Web.Controllers
         }
 
  
-        public ActionResult UserPage(string id)
+        public ActionResult UserPage(string id, string passedViewBag)
         {
             //Hämtar användaren som matchar användarnamnet, hämtat från sökfunktionen
-            var user = db.Users.Where(x => x.Id.Equals(id)).Single();
-            return View(user);
+
+            var otherUser = db.Users.Where(x => x.Id.Equals(id)).Single();
+            var myUser = User.Identity.Name;
+
+            var From = db.Users.Single(x => x.UserName == myUser);
+
+            var a = db.Friends.Count(x => x.Friend1.UserName == From.UserName && x.Friend2.UserName == otherUser.UserName || x.Friend2.UserName == From.UserName && x.Friend1.UserName == otherUser.UserName);
+            
+
+            //Kollar om dom redan är kompisar
+            if (a == 0)
+            {
+                if(passedViewBag == null) //Om man bara klickar genom sökningen så hamnar man inne i den här
+                {
+                    ViewBag.Message = "NotFriends";
+                }
+                else
+                {
+                    ViewBag.Message = passedViewBag; //Den kommer från friendrequestcontrollern
+                }
+               
+            }
+            else
+            {
+                if (passedViewBag == null)//Om man bara klickar genom sökningen så hamnar man inne i den här
+                {
+                    ViewBag.Message = "AlreadyFriends";
+                }
+                else
+                {
+                    ViewBag.Message = passedViewBag; //Den kommer från friendrequestcontrollern
+                }
+
+            }
+
+            return View(otherUser);
         }
 
         // GET: Search

@@ -3,7 +3,7 @@
 @Scripts.Render("~/Bundels/bootstrap")
     
 
-    @if (Request.IsAuthenticated && ViewData.ContainsKey("nickName"))
+    @if (Request.IsAuthenticated)
     {
         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
         {

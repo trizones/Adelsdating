@@ -9,5 +9,7 @@ namespace DataLogic.Models
     class ErrorMessageModel
     {
         public string Message { get; set; }
+        public int MyProperty { get; set; }
+
     }
 }

@@ -37,25 +37,49 @@
             </li>
             <br />
             <li>
-                @if (Model.Friends.Count != 0)
-                {
-                    foreach (var item in Model.Friends)
-                {
-                    if (item.UserName == User.Identity.Name)
-                    {
-                            <p>Ni är vänner, gå in på vänner för att skriva något.</p>
-                        }
-                        else
-                        {
-                            @Html.ActionLink("Skicka vänförfrågan", "SendRequest", "FriendRequest", new { id = Model.Id }, null)
-                        }
-                    }
+                                @*
+              @if (Model.FriendRequests.Count != 0)
+        {
+            foreach (var item in Model.Friends)
+        {
+            if (item.UserName == User.Identity.Name)
+            {
+                    <p>Ni är vänner, gå in på vänner för att skriva något.</p>
+                    break;
                 }
                 else
                 {
+                    if(ViewBag != null)
+                    {
+                        @ViewBag.Message;
+                    }
+                    @Html.ActionLink("Skicka vänförfrågan", "SendRequest", "FriendRequest", new { id = Model.Id }, null)
+                    break;
+                }
+            }
+        }
+        else
+        {
+            @Html.ActionLink("Skicka vänförfrågan", "SendRequest", "FriendRequest", new { id = Model.Id }, null)
+        }
+                                *@
+              
+                @if (ViewBag.Message == "AlreadyFriends")
+                {
+                    <p>Ni är redan vänner! :)</p>
+                }
+                else if (ViewBag.Message == "NotFriends")
+                {
                     @Html.ActionLink("Skicka vänförfrågan", "SendRequest", "FriendRequest", new { id = Model.Id }, null)
                 }
-
+                else if (ViewBag.Message == "SentRequest")
+                {
+                    <p>Vänförfrågan skickad! :)</p>
+                }
+                else if(ViewBag.Message == "AlreadySentRequest")
+                {
+                    <p>Du har redan skickat en förfrågan!</p>
+                }
 
             </li>
         </ol>

@@ -11,9 +11,10 @@ namespace Web.Controllers
     {
         public class ApplicationBaseController : Controller
         {
-            //Hämta olika properties från inloggad användare
+           /* //Hämta olika properties från inloggad användare
             protected override void OnActionExecuted(ActionExecutedContext filterContext)
             {
+               
                 if (User != null)
                 {
                     var context = new ApplicationDbContext();
@@ -42,7 +43,7 @@ namespace Web.Controllers
                     }
                 }
                 base.OnActionExecuted(filterContext);
-            }
+            }*/
         }
     }
 }
