@@ -66,7 +66,8 @@ namespace Web.Models
     }
 
     public class ChangeProfilePictureModel
-    {
+    { 
+    
         [Display(Name = "ProfilePicture")]
         public byte[] ProfilePicture { get; set; }
     }
