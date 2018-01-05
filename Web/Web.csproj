@@ -272,7 +272,6 @@
     <Content Include="Views\Manage\ChangeNickname.cshtml" />
     <Content Include="Views\User\Search.cshtml" />
     <Content Include="Views\User\UserPage.cshtml" />
-    <Content Include="Views\FriendRequest\SendRequestMessage.cshtml" />
     <Content Include="Views\FriendRequest\SendRequest.cshtml" />
     <Content Include="Views\FriendRequest\Index.cshtml" />
     <Content Include="Views\Manage\ChangeProfilePicture.cshtml" />
