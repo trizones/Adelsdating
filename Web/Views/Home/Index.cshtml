@@ -21,7 +21,20 @@
                 <li class="TextAndImage">
                     <div class="TextAndImage">
                         <p>@user.Nickname</p>
-                        <img class="avatarsHomePage" src="@Url.Action("UserPicture", "Home", new { id = user.Id })" />
+                        @{ 
+                            if (Request.IsAuthenticated)
+                            {
+                            <a href="@Url.Action("UserPage", "User", routeValues: new { id = user.Id })">
+                                <img class="avatarsHomePage" src="@Url.Action("UserPicture", "Home", new { id = user.Id })"/>
+                            </a>
+                            }
+                            else
+                            {
+                            <a href="@Url.Action("Register", "Account")">
+                                <img class="avatarsHomePage" src="@Url.Action("UserPicture", "Home", new { id = user.Id })" />
+                            </a>
+                                }
+                            }
                     </div>
                 </li>
 
