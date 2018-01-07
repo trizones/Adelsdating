@@ -22,11 +22,11 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Interests anInterest, string id)
+        public ActionResult Create(Interests anInterest, string id) //Skapar en ny interest och sparar den till databasen
         {
             var userName = User.Identity.Name;
 
-            var user = db.Users.Single(x => x.UserName == userName);
+            var user = db.Users.Single(x => x.UserName == userName); //Hämtar inloggade användarens info
 
             anInterest.User = user;
 

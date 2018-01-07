@@ -9,6 +9,6 @@ namespace AdelsDating.Models
         public bool Accepted { get; set; }
         public virtual ApplicationUser FromUser { get; set; }
         public virtual ApplicationUser ToUser { get; set; }
-        public int MyProperty { get; set; }
+        public int MyProperty { get; set; } // Vad gör den här här?
     }
 }

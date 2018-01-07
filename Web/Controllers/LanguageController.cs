@@ -10,8 +10,7 @@ namespace Web.Controllers
 {
     public class LanguageController : Controller
     {
-        // GET: Language
-        public ActionResult Index()
+        public ActionResult Index() 
         {
             return View();
         }

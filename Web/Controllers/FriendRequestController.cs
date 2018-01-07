@@ -18,10 +18,9 @@ namespace Web.Controllers
 
             base.Dispose(disposing);
         }
-        
-        public ActionResult Index(string name)
-        {
 
+        public ActionResult Index(string name) //Returnerar en specifik användares vänförfrågningar
+        {
             ApplicationUser aUser = db.Users.Single(x => x.UserName == name);
             List<FriendRequests> requests = db.Requests.Where(x => x.ToUser.Id == aUser.Id && x.Accepted == false).ToList();
             return View(new PostFriendRequestViewModel { Id = aUser.Id, Requests = requests});
@@ -31,7 +30,8 @@ namespace Web.Controllers
         {
             return View();
         }
-        //Parar ihop den som skickat och den som fått requestet
+
+        //Skapar en request och sparar den i databasen
         [HttpPost]
         public ActionResult SendRequest(FriendRequests request, string id)
         {
@@ -63,29 +63,28 @@ namespace Web.Controllers
             catch
             {
                 return View("SendRequestMessage", "FriendRequest");
-
             }
             
         }
-
-        public ActionResult AcceptRequest(int requestId)
+        
+        public ActionResult AcceptRequest(int requestId) //Logik för att acceptera en vänförfrågan
         { 
-
-            var request = db.Requests.Single(x => x.Id == requestId);
+            var request = db.Requests.Single(x => x.Id == requestId); //Hittar den specifika requesten med hjälp av parametern 
 
             var userSentRequest = request.FromUser;
             var loggedinUser = request.ToUser;
 
-            Friends friendsTable = new Friends();
-
-            friendsTable.Friend1 = (userSentRequest);
-            friendsTable.Friend2 = (loggedinUser);
+            Friends friendsTable = new Friends
+            {
+                Friend1 = (userSentRequest),
+                Friend2 = (loggedinUser)
+            };
 
             db.Friends.Add(friendsTable);
 
             request.Accepted = true;
 
-            db.Entry(request).State = EntityState.Modified;
+            db.Entry(request).State = EntityState.Modified; //Beskriver för databasen att den ska ändra något i databasen
 
             db.SaveChanges();
 
@@ -94,7 +93,7 @@ namespace Web.Controllers
 
         
     }
-    public class PostFriendRequestViewModel
+    public class PostFriendRequestViewModel //ViewModel för friendrequests
     {
         public string Id { get; set; }
         public ICollection<FriendRequests> Requests { get; set; }
