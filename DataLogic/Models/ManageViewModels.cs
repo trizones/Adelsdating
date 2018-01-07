@@ -26,7 +26,7 @@ namespace Web.Models
     public class SetPasswordViewModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "{0} måste vara åtminstone {2} tecken långt.", MinimumLength = 6)]
+        [StringLength(32, ErrorMessage = "{0} måste vara åtminstone {2} tecken långt.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Nytt Lösenord")]
         public string NewPassword { get; set; }
