@@ -12,25 +12,22 @@ namespace Web.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-
         protected override void Dispose(bool disposing)
         {
             if (disposing) db.Dispose();
 
             base.Dispose(disposing);
         }
-
-        // GET: Inlogged Page
-        public ActionResult MyPage()
+        
+        public ActionResult MyPage() //Inloggade användarens egna sida
         {
             //Hämtar den inloggade användaren
             var loggedInUser = db.Users.Where(x => x.UserName == User.Identity.Name).Single();
             
             return View(loggedInUser);
         }
-
- 
-        public ActionResult UserPage(string id, string passedViewBag)
+        
+        public ActionResult UserPage(string id, string passedViewBag) //En speciferad användares sida
         {
             //Hämtar användaren som matchar användarnamnet, hämtat från sökfunktionen
 
@@ -39,7 +36,8 @@ namespace Web.Controllers
 
             var From = db.Users.Single(x => x.UserName == myUser);
 
-            var a = db.Friends.Count(x => x.Friend1.UserName == From.UserName && x.Friend2.UserName == otherUser.UserName || x.Friend2.UserName == From.UserName && x.Friend1.UserName == otherUser.UserName);
+            var a = db.Friends.Count(x => x.Friend1.UserName == From.UserName && x.Friend2.UserName == otherUser.UserName 
+            || x.Friend2.UserName == From.UserName && x.Friend1.UserName == otherUser.UserName);  //Kollar om du och den inloggade användaren är vänner
             
 
             //Kollar om dom redan är kompisar
@@ -67,11 +65,9 @@ namespace Web.Controllers
                 }
 
             }
-
             return View(otherUser);
         }
-
-        // GET: Search
+        
         public ActionResult Search()
         {
             return View();
@@ -81,18 +77,24 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Search(string search)
         {
-            //Hämtar alla användare som matchar parametern
-            var loggedInUser = User.Identity.Name;
-            var allUsers = db.Users.Where(x => x.Nickname.Contains(search) && x.Searchable == true && x.UserName != loggedInUser || search == null).ToList();
+            if(Request.IsAuthenticated) //Kollar om användaren är inloggad, om inte så skickas den till registreringssidan
+            {
+                //Hämtar alla användare som matchar parametern
+                var loggedInUser = User.Identity.Name;
+                var allUsers = db.Users.Where(x => x.Nickname.Contains(search) && x.Searchable == true && x.UserName != loggedInUser || search == null).ToList();
+                
+                return View(allUsers);
+            }
+            else
+            {
+                return RedirectToAction("Register", "Account");
+            }
             
-            return View(allUsers);
         }
-
-
+        
         public ActionResult GetFriends()
         {
-            //var allUsers = db.Users.ToList();
-            var user = db.Users.Single(x => x.UserName == User.Identity.Name);
+            var user = db.Users.Single(x => x.UserName == User.Identity.Name); //Hämtar inloggade användaren
             var myFriends = db.Requests
                 .Join(db.Users, r => r.ToUser.Id, u => u.Id, (r, u) => new { Request = r, Users = u })
                 .Where(x => x.Request.FromUser.Id == user.Id && x.Request.Accepted == true)
@@ -107,7 +109,5 @@ namespace Web.Controllers
 
             return View(friends);
         }
-
-
     }
 }

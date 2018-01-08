@@ -16,9 +16,8 @@ namespace Web.Controllers
 
             base.Dispose(disposing);
         }
-
-        // GET: Inlägg
-        public ActionResult Index(string id)
+        
+        public ActionResult Index(string id) //Returnerar en lista med alla poster för en specifierad användare
         {
             var posts = db.Posts.Where(x => x.To.Id == id).ToList();
             return View(new PostIndexViewModel { Id = id, Posts = posts });
@@ -28,17 +27,17 @@ namespace Web.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult Create(Posts post, string id)
-        {
 
+        [HttpPost]
+        public ActionResult Create(Posts post, string id) //Skapar en ny post och sparar den i databasen
+        {
             var userName = User.Identity.Name;
 
-            var user = db.Users.Single(x => x.UserName == userName);
+            var user = db.Users.Single(x => x.UserName == userName); //Hämtar inloggade användarens info
 
             post.From = user;
 
-            var toUser = db.Users.Single(x => x.Id == id);
+            var toUser = db.Users.Single(x => x.Id == id); //Hämtar användaren som ska motta inlägget
             post.To = toUser;
 
             db.Posts.Add(post);
@@ -49,7 +48,7 @@ namespace Web.Controllers
         }
     }
 
-    public class PostIndexViewModel
+    public class PostIndexViewModel //ViewModel för poster
     {
         public string Id { get; set; }
         public ICollection<Posts> Posts { get; set; }
