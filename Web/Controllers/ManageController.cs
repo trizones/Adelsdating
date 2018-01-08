@@ -244,7 +244,7 @@ namespace Web.Controllers
             }
             catch
             {
-
+                ViewBag.TomtFält = "Du måste ange något.";
                 return RedirectToAction("ChangeNickname", new { Message = "Du måste skriva in något." });
             }
             
@@ -287,7 +287,7 @@ namespace Web.Controllers
             }
             catch
             {
-
+                ViewBag.FelStorlek = "För stor bild.";
                 return RedirectToAction("ChangeProfilePicture", new { Message = "Du måste välja en bild." });
             }
 

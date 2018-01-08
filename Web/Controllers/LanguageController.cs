@@ -14,7 +14,7 @@ namespace Web.Controllers
         {
             return View();
         }
-
+        //Controller för att byta språk där man tar in en kulturparameter "sv", eller "en"
         public ActionResult Change(string LanguageAbbrevation)
         {
             if(LanguageAbbrevation != null)
@@ -23,6 +23,7 @@ namespace Web.Controllers
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(LanguageAbbrevation);   
             }
 
+            //Sparar valet i en cookie så webbläsaren kommer ihåg valet.
             HttpCookie cookie = new HttpCookie("Language");
             cookie.Value = LanguageAbbrevation;
             Response.Cookies.Add(cookie);
