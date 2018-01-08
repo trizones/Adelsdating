@@ -27,6 +27,9 @@ namespace Web.Controllers
                         string userName = user.UserName;
                         ViewData.Add("userName", userName);
 
+                        string id = user.Id;
+                        ViewData.Add("id", id);
+
                         string nickName = user.Nickname;
                         ViewData.Add("nickName", nickName);
 

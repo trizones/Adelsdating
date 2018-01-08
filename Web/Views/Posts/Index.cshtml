@@ -20,7 +20,7 @@
 @foreach (var item in Model.Posts) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.From.Nickname): @Html.DisplayFor(modelItem => item.Message)
+            @Html.DisplayFor(modelItem => item.FromUserNickname): @Html.DisplayFor(modelItem => item.Message)
         </td>
     </tr>
 }
