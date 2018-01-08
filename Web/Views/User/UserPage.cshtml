@@ -37,32 +37,7 @@
             </li>
             <br />
             <li>
-                                @*
-              @if (Model.FriendRequests.Count != 0)
-        {
-            foreach (var item in Model.Friends)
-        {
-            if (item.UserName == User.Identity.Name)
-            {
-                    <p>Ni är vänner, gå in på vänner för att skriva något.</p>
-                    break;
-                }
-                else
-                {
-                    if(ViewBag != null)
-                    {
-                        @ViewBag.Message;
-                    }
-                    @Html.ActionLink("Skicka vänförfrågan", "SendRequest", "FriendRequest", new { id = Model.Id }, null)
-                    break;
-                }
-            }
-        }
-        else
-        {
-            @Html.ActionLink("Skicka vänförfrågan", "SendRequest", "FriendRequest", new { id = Model.Id }, null)
-        }
-                                *@
+
               
                 @if (ViewBag.Message == "AlreadyFriends")
                 {
