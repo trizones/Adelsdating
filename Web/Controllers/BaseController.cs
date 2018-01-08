@@ -11,7 +11,7 @@ namespace Web.Controllers
     {
         public class ApplicationBaseController : Controller
         {
-           /* //Hämta olika properties från inloggad användare
+            //Hämta olika properties från inloggad användare
             protected override void OnActionExecuted(ActionExecutedContext filterContext)
             {
                
@@ -39,11 +39,51 @@ namespace Web.Controllers
                         string fullName = string.Concat(firstName," ",lastName);
                         ViewData.Add("fullName", fullName);
 
+                        var friendrequests = context.Requests.Where(u => u.ToUser.UserName == username);
+
+                        foreach (var hasRequest in friendrequests)
+                        {
+                            if (!hasRequest.Accepted)
+                            {
+
+                                string newFriend = "Vänförfrågan inc!";
+                                var value = ViewData["newFriend"];
+                                if (value == null)
+                                {
+                                    ViewData.Add("newFriend", newFriend);
+                                }
+                                else if (value.Equals(""))
+                                {
+                                    ViewData.Add("newFriend", newFriend);
+                                }                           
+                                
+                            }
+                            else
+                            {
+                                var value = ViewData["noFriend"];
+                                string noFriend = "";
+                                
+                                if (value == null)
+                                {
+                                    ViewData.Add("noFriend", noFriend);
+                                }
+                                else if (value.Equals("Vänförfrågan inc!"))
+                                {
+                                    ViewData.Add("noFriend", noFriend);
+                                }
+
+                             
+                                
+
+                            }
+                        }
+                        
+
                         
                     }
                 }
                 base.OnActionExecuted(filterContext);
-            }*/
+            }
         }
     }
 }

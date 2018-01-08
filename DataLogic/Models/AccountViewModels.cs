@@ -35,12 +35,12 @@ namespace Web.Models
 
         [Required]
         [Display(Name = "Firstname")]
-        [RegularExpression(@"[a-öA-Ö''-'\s]*$")]
+        [RegularExpression(@"^[A-Ö]+[a-öA-Ö''-'\s]*$")]
         public string Firstname { get; set; }
 
         [Required]
         [Display(Name = "Lastname")]
-        [RegularExpression(@"[a-öA-Ö''-'\s]*$")]
+        [RegularExpression(@"^[A-Ö]+[a-öA-Ö''-'\s]*$")]
         public string Lastname { get; set; }
 
         [Display(Name = "ProfilePicture")]

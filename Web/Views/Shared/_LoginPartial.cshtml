@@ -25,26 +25,6 @@
                 </li>
                 <li>
                     <img id= "hasRequests"/>
-<script>
-    //Skickar JSON-data om det finns en ny friendrequest
-    function IfNewFriendrequest() {
-        $.ajax({
-            type: 'GET',
-            url: '/WebApi/HasRequest',
-            success: function (response) {
-               
-                    alert(response);
-               
-                //Refreshar sidan efter lyckat inlägg.
-                location.reload();
-
-                setTimeout(IfNewFriendrequest, 5000);
-            }
-        });
-
-    }
-    IfNewFriendrequest();
-</script>
                 </li>
                 <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
             </ul>
