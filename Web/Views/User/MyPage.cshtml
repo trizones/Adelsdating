@@ -15,6 +15,7 @@
     <div class="UserInformation">
         <ol class="MyPageList">
             <li class="MyPageList">Namn: @Html.Raw((ViewData["fullName"])) </li>
+            <li>@Html.ActionLink("Mina Poster", "Index", "Posts", routeValues: new { Id = Model.Id}, htmlAttributes: null)</li>
             <br />
         <li class="MyPageList">
         

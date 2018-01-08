@@ -50,8 +50,7 @@ namespace Web.Controllers
                 _userManager = value;
             }
         }
-
-        //
+        
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
@@ -73,8 +72,7 @@ namespace Web.Controllers
             };
             return View(model);
         }
-
-        //
+        
         // POST: /Manage/RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -97,15 +95,13 @@ namespace Web.Controllers
             }
             return RedirectToAction("ManageLogins", new { Message = message });
         }
-
-        //
+        
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
         {
             return View();
         }
-
-        //
+        
         // POST: /Manage/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -128,15 +124,13 @@ namespace Web.Controllers
             AddErrors(result);
             return View(model);
         }
-
-        //
+        
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
         {
             return View();
         }
-
-        //
+        
         // POST: /Manage/SetPassword
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -160,8 +154,7 @@ namespace Web.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
-        //
+        
         // GET: /Manage/ManageLogins
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
@@ -183,8 +176,7 @@ namespace Web.Controllers
                 OtherLogins = otherLogins
             });
         }
-
-        //
+        
         // POST: /Manage/LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -193,8 +185,7 @@ namespace Web.Controllers
             // Request a redirect to the external login provider to link a login for the current user
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
-
-        //
+        
         // GET: /Manage/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
@@ -217,8 +208,7 @@ namespace Web.Controllers
 
             base.Dispose(disposing);
         }
-
-        //
+        
         // GET: /Manage/ChangeNickname
         public ActionResult ChangeNickname()
         {
@@ -249,8 +239,7 @@ namespace Web.Controllers
             }
             
         }
-
-        //
+        
         // GET: /Manage/ChangeNickname
         public ActionResult ChangeProfilePicture(ChangeProfilePictureModel model)
         {
@@ -317,13 +306,12 @@ namespace Web.Controllers
 
         }
 
-
         public async Task<ActionResult> ChangeSearchableToTrue()
         {
             try
             {
                 if (ModelState.IsValid)
-                {   //Spara inloggand användare
+                {   //Spara inloggad användare
                     var user = UserManager.FindById(User.Identity.GetUserId());
 
                         //Ändra sökbarheten till true & spara ändringen i databasen
@@ -341,8 +329,6 @@ namespace Web.Controllers
             }
 
         }
-
-
 
         #region Helpers
         // Used for XSRF protection when adding external logins

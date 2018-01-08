@@ -28,26 +28,6 @@ namespace Web.Controllers
             var toUser = db.Users.Single(x => x.Id == id);
             return View(toUser);
         }
-/*
-        [System.Web.Http.HttpPost]
-        public ActionResult Create(Posts post, string id) //Skapar en ny post och sparar den i databasen
-        {
-            var userName = User.Identity.Name;
-
-            var user = db.Users.Single(x => x.UserName == userName); //Hämtar inloggade användarens info
-
-            post.FromID = user.Id;
-
-            var toUser = db.Users.Single(x => x.Id == id); //Hämtar användaren som ska motta inlägget
-            post.ToID = toUser.Id;
-
-            db.Posts.Add(post);
-
-            db.SaveChanges();
-
-            return RedirectToAction("Index", new { id = id });
-        }
-*/
         
     }
 

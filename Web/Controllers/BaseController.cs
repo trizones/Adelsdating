@@ -74,15 +74,8 @@ namespace Web.Controllers
                                 {
                                     ViewData.Add("noFriend", noFriend);
                                 }
-
-                             
-                                
-
                             }
                         }
-                        
-
-                        
                     }
                 }
                 base.OnActionExecuted(filterContext);

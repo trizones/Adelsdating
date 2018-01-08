@@ -1,6 +1,7 @@
 ﻿using AdelsDating.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Web.Models
 {
@@ -28,6 +29,7 @@ namespace Web.Models
         [MaxLength(32)]
         public string Email { get; set; }
 
+        [Index(IsUnique = true)]
         [Required]
         [Display(Name = "Nickname")]
         [MaxLength(20)]

@@ -20,10 +20,8 @@ namespace Web.Controllers
             var allUsers = ApplicationDbContext.Users.Where(c => c.Searchable == true).OrderBy(x => Guid.NewGuid()).Take(3).Distinct();
             return View(allUsers);
         }
-
         
         //Returnerar en profilbild
-
         public FileContentResult UserPicture(string id)
         {
             
@@ -112,11 +110,6 @@ namespace Web.Controllers
                 return null;
                 ViewBag.FelStorlek = "För stor bild.";
             }
-           
         }
-
-
-
     }
-
 }
