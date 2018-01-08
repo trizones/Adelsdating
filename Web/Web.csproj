@@ -278,6 +278,7 @@
     <Content Include="Views\Interests\Create.cshtml" />
     <Content Include="Views\User\GetFriends.cshtml" />
     <Content Include="Views\Language\Index.cshtml" />
+    <Content Include="Views\Posts\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

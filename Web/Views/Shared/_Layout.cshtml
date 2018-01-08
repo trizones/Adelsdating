@@ -19,6 +19,16 @@
                 </button>
 
                 <div class="top-left">
+                    @if (ViewData["newFriend"] != null)
+                    {      
+                    <h2 class="navbar-brand" id="newFriends">@ViewData["newFriend"]</h2>  
+
+                    }
+                    else
+                    {
+                        <h2 class="navbar-brand">@ViewData["noFriend"]</h2>
+                    }
+
                     @Html.ActionLink(DataLogic.Resources.Language.Home, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                     @Html.ActionLink(DataLogic.Resources.Language.Languages, "Index", "Language", routeValues: null, htmlAttributes: new { @class = "navbar-brand" })
 
@@ -28,12 +38,12 @@
 
             <div style="float:left;">
                 @using (Html.BeginForm("Search", "User"))
-    {
-            <!-- Gör sökning till användare -->
-            <input class="searchfield" name="search" type="text" placeholder="Sök efter användare.." />
-            <input class="btn-success" type="submit" value="Sök" />
+                {
+                    <!-- Gör sökning till användare -->
+                    <input class="searchfield" name="search" type="text" placeholder="Sök efter användare.." />
+                    <input class="btn-success" type="submit" value="Sök" />
 
-}
+                }
             </div>
 
             <div class="navbar-collapse collapse">
@@ -49,11 +59,18 @@
                 <ul class="footer-ul">
                     <li>@Html.ActionLink("Om oss", "About", "Home")</li>
                     <li>@Html.ActionLink("Kontakta Oss", "Contact", "Home")</li>
-                </ul>            
+                </ul>
             </div>
         </footer>
     </div>
-
+    <script> 
+        var blink_speed = 600; // every 1000 == 1 second, adjust to suit
+        var t = setInterval(function () {
+            var ele = document.getElementById('newFriends');
+            ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
+        }, blink_speed);
+    </script>
+   
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
